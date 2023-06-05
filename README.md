@@ -1,4 +1,4 @@
-# kind-cluster
+# Cilium
 
 3-Node kind cluster with Cilium CNI + Hubble enabled
 
