@@ -18,7 +18,7 @@ The Helm chart method is meant for advanced installation and production environm
 
 ## Pre-requisite
 
-#### 1. Install `kind`
+### 1. Install `kind`
 
 We will need a Kubernetes cluster appropriately configured and ready for an external CNI to be installed. We were using `kind` cluster for this. [Install kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
 
@@ -40,7 +40,7 @@ kind version
 > **Note**:
 > kind version >= `v0.7.0`
 
-#### 2. Install `kubectl`
+### 2. Install `kubectl`
 
 `kind` does not require `kubectl`, but we will not be able to perform some of the operations without it. [Install Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
@@ -57,7 +57,7 @@ kubectl version --client
 
 ## Procedure
 
-#### 1. Prepare Kubernetes Cluster
+### 1. Prepare Kubernetes Cluster
 
 Here is the YAML configuration file for a 3-node kind cluster with default CNI disabled. Save this locally to your workstation as `kind-config.yaml` with the contents:
 
@@ -94,7 +94,7 @@ kubectl get nodes
 > **Note**: 
 > Because you have created the cluster without a default CNI, the Kubernetes nodes are in a NotReady state.
 
-####  2. Install the Cilium CLI Tool
+###  2. Install the Cilium CLI Tool
 
 [Download and install](https://docs.cilium.io/en/v1.13/gettingstarted/k8s-install-default/#install-the-cilium-cli) the Cilium CLI 
 
@@ -118,7 +118,7 @@ cilium version
 
 We’ll be installing the default Cilium image into the Kubernetes cluster we’ve prepared.
 
-#### 3. Install Cilium
+### 3. Install Cilium
 
 ```bash
 cilium install
@@ -132,7 +132,7 @@ cilium status --wait
 
 ![image](https://github.com/ShubhamKumar89/kind-cluster/assets/97805339/41b8a21b-8c8d-48dd-8cb3-f8c8c6071167)
 
-#### 3. Enable Hubble
+### 4. Enable Hubble
 
 ```bash
 cilium hubble enable --ui
@@ -146,7 +146,7 @@ cilium status
 
 ![image](https://github.com/ShubhamKumar89/kind-cluster/assets/97805339/6b0b59fb-da81-4d2f-904c-02c172c158bb)
 
-#### 4. Validate Cilium Operation
+### 5. Validate Cilium Operation
 
 The Cilium CLI tool also provides a command to install a set of connectivity tests in a dedicated Kubernetes namespace. We can run these tests to validate that the Cilium install is fully operational:
 
@@ -157,7 +157,7 @@ cilium connectivity test --request-timeout 30s --connect-timeout 10s
 > **Note**:
 > The connectivity tests require at least two worker nodes to successfully deploy in a cluster. The connectivity test pods will not be scheduled on nodes operating in the control-plane role. If you did not provision your cluster with two worker nodes, the connectivity test command may stall waiting for the test environment deployments to complete.
 
-#### 5. Examine Cluster with kubectl
+### 6. Examine Cluster with kubectl
 
 With Cilium now installed, we can use kubectl to confirm that the nodes are now ready and the required Cilium operational components are present in the cluster:
 
