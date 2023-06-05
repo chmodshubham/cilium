@@ -1,6 +1,6 @@
 # kind-cluster
 
-3-Node kind cluster with Cilium CNI.
+3-Node kind cluster with Cilium CNI + Hubble enabled
 
 ## Cilium Architecture
 
